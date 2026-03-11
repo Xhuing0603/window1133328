@@ -1,0 +1,11 @@
+C:\Users\user\Desktop\homework1\homework1\bin\Debug\homework1.exe.config
+C:\Users\user\Desktop\homework1\homework1\bin\Debug\homework1.exe
+C:\Users\user\Desktop\homework1\homework1\bin\Debug\homework1.pdb
+C:\Users\user\Desktop\homework1\homework1\obj\Debug\homework1.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\homework1\homework1\obj\Debug\homework1.FrmBMI.resources
+C:\Users\user\Desktop\homework1\homework1\obj\Debug\homework1.Properties.Resources.resources
+C:\Users\user\Desktop\homework1\homework1\obj\Debug\homework1.csproj.GenerateResource.cache
+C:\Users\user\Desktop\homework1\homework1\obj\Debug\homework1.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\homework1\homework1\obj\Debug\homework1.exe
+C:\Users\user\Desktop\homework1\homework1\obj\Debug\homework1.pdb
+C:\Users\user\Desktop\homework1\homework1\obj\Debug\homework1.exe.config
