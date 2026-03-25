@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\bin\Debug\homework1.exe.config
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\bin\Debug\homework1.exe
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\bin\Debug\homework1.pdb
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\obj\Debug\BMI.csproj.AssemblyReference.cache
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\obj\Debug\homework1.FrmBMI.resources
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\obj\Debug\homework1.Properties.Resources.resources
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\obj\Debug\BMI.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\obj\Debug\BMI.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\obj\Debug\homework1.exe
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\practice\homework1\homework1\obj\Debug\homework1.pdb
