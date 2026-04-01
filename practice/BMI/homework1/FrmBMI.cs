@@ -12,9 +12,96 @@ namespace homework1
 {
     public partial class FrmBMI : Form
     {
+        private readonly string placeholderHeight = "例：165";
+        private readonly string placeholderWeight = "例：55";
         public FrmBMI()
         {
             InitializeComponent();
+            FrmBMI_LoadKeyboardHandlers();
+
+            // create picture box for displaying reference image (initialized here because
+            // designer declares the field but did not create the control)
+            this.picUser = new PictureBox();
+            this.picUser.Location = new Point(0, 31);
+            this.picUser.Size = new Size(this.ClientSize.Width, 194);
+            this.picUser.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.picUser.Visible = false; // start hidden
+            this.picUser.BackColor = Color.White;
+            this.Controls.Add(this.picUser);
+        }
+
+        // allow keyboard-only switching between height and weight fields
+        // Enter or Down in height -> move to weight
+        // Enter or Up in weight   -> move to height
+        private void FrmBMI_LoadKeyboardHandlers()
+        {
+            this.KeyPreview = true;
+            this.txtHeight.KeyDown += TxtHeight_KeyDown;
+            this.txtWeight.KeyDown += TxtWeight_KeyDown;
+            this.txtHeight.Enter += TxtHeight_Enter;
+            this.txtHeight.Leave += TxtHeight_Leave;
+            this.txtWeight.Enter += TxtWeight_Enter;
+            this.txtWeight.Leave += TxtWeight_Leave;
+
+            // initialize placeholder text
+            this.txtHeight.Text = placeholderHeight;
+            this.txtHeight.ForeColor = Color.Gray;
+            this.txtWeight.Text = placeholderWeight;
+            this.txtWeight.ForeColor = Color.Gray;
+        }
+
+        private void TxtHeight_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Down)
+            {
+                this.txtWeight.Focus();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void TxtWeight_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Up)
+            {
+                this.txtHeight.Focus();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void TxtHeight_Enter(object sender, EventArgs e)
+        {
+            if (this.txtHeight.Text == placeholderHeight)
+            {
+                this.txtHeight.Text = "";
+                this.txtHeight.ForeColor = Color.Black;
+            }
+        }
+
+        private void TxtHeight_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(this.txtHeight.Text))
+            {
+                this.txtHeight.Text = placeholderHeight;
+                this.txtHeight.ForeColor = Color.Gray;
+            }
+        }
+
+        private void TxtWeight_Enter(object sender, EventArgs e)
+        {
+            if (this.txtWeight.Text == placeholderWeight)
+            {
+                this.txtWeight.Text = "";
+                this.txtWeight.ForeColor = Color.Black;
+            }
+        }
+
+        private void TxtWeight_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(this.txtWeight.Text))
+            {
+                this.txtWeight.Text = placeholderWeight;
+                this.txtWeight.ForeColor = Color.Gray;
+            }
         }
 
         string[] strResultList = { "體重過輕", "健康體位", "體位過重", "輕度肥胖", "中度肥胖", "重度肥胖" };
@@ -29,12 +116,15 @@ namespace homework1
             //double bmi = weight / ( height * height );
             //lblBmiResult.Text = bmi.ToString();
             //lblBmiResult.Text = $"{bmi:F2}";
-            if (this.txtHeight.Text == "" || this.txtWeight.Text == "") { 
-                MessageBox.Show("請輸入身高和體重。")  ;
+            string heightText = this.txtHeight.Text == placeholderHeight ? "" : this.txtHeight.Text;
+            string weightText = this.txtWeight.Text == placeholderWeight ? "" : this.txtWeight.Text;
+            if (string.IsNullOrWhiteSpace(heightText) || string.IsNullOrWhiteSpace(weightText))
+            {
+                MessageBox.Show("請輸入身高和體重。");
                 return;
             }
-            bool isHeightValid = double.TryParse(txtHeight.Text, out double height);
-            bool isWeightValid = double.TryParse(txtWeight.Text, out double weight);
+            bool isHeightValid = double.TryParse(heightText, out double height);
+            bool isWeightValid = double.TryParse(weightText, out double weight);
 
             if (isHeightValid)
             {
@@ -109,6 +199,30 @@ namespace homework1
                 MessageBox.Show("請輸入有效的數字。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+            // show input/output groups and hide the reference image
+            if (this.grpInput != null) this.grpInput.Visible = true;
+            if (this.grpOutput != null) this.grpOutput.Visible = true;
+            if (this.picUser != null)
+            {
+                this.picUser.Visible = false;
+                this.picUser.Image = null;
+            }
+        }
+
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+            // hide input controls and show the BMI reference image
+            if (this.grpInput != null) this.grpInput.Visible = false;
+            if (this.grpOutput != null) this.grpOutput.Visible = false;
+            if (this.picUser != null)
+            {
+                this.picUser.Image = Properties.Resources.BMI_image;
+                this.picUser.Visible = true;
+            }
         }
     }
 }
