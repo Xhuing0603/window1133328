@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|c:\\users\\administrator\\desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\homework1\\homework1_1133328\\homework1_1133328\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|solutionrelative:homework1_1133328\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\homework1_1133328\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|solutionrelative:homework1_1133328\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\homework1_1133328\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|solutionrelative:homework1_1133328\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\homework1_1133328\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|solutionrelative:homework1_1133328\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|c:\\users\\administrator\\desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\homework1\\homework1_1133328\\homework1_1133328\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|solutionrelative:homework1_1133328\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C94DE4B2-D9DD-4187-A010-1EA1BD8217E1}|homework1_1133328\\homework1_1133328.csproj|C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\homework1_1133328\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,13 +38,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\homework1_1133328\\Form1.cs",
               "RelativeDocumentMoniker": "homework1_1133328\\Form1.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\homework1_1133328\\Form1.cs",
               "RelativeToolTip": "homework1_1133328\\Form1.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAAAgAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAzwHEAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-07T14:43:31.091Z",
               "EditorCaption": ""
@@ -57,14 +57,14 @@
               "RelativeDocumentMoniker": "homework1_1133328\\Form2.cs",
               "ToolTip": "C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\homework1_1133328\\Form2.cs",
               "RelativeToolTip": "homework1_1133328\\Form2.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAAABcAAAA8AAAAAAAAAA==",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAABcAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-07T14:53:10.447Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Form2.cs [\u8A2D\u8A08]",
               "DocumentMoniker": "C:\\Users\\Administrator\\Desktop\\program workplace\\yzu\\window2\\window1133328\\homework\\Homework1\\homework1_1133328\\homework1_1133328\\Form2.cs",
               "RelativeDocumentMoniker": "homework1_1133328\\Form2.cs",

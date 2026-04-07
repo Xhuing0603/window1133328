@@ -97,7 +97,7 @@
             this.labelValue1.Font = new System.Drawing.Font("新細明體", 12F);
             this.labelValue1.Location = new System.Drawing.Point(220, 34);
             this.labelValue1.Name = "labelValue1";
-            this.labelValue1.Size = new System.Drawing.Size(56, 16);
+            this.labelValue1.Size = new System.Drawing.Size(35, 16);
             this.labelValue1.TabIndex = 6;
             this.labelValue1.Text = "0.00";
             // 
@@ -107,7 +107,7 @@
             this.labelValue2.Font = new System.Drawing.Font("新細明體", 12F);
             this.labelValue2.Location = new System.Drawing.Point(220, 80);
             this.labelValue2.Name = "labelValue2";
-            this.labelValue2.Size = new System.Drawing.Size(56, 16);
+            this.labelValue2.Size = new System.Drawing.Size(35, 16);
             this.labelValue2.TabIndex = 7;
             this.labelValue2.Text = "0.00";
             // 
@@ -117,7 +117,7 @@
             this.labelValue3.Font = new System.Drawing.Font("新細明體", 12F);
             this.labelValue3.Location = new System.Drawing.Point(220, 123);
             this.labelValue3.Name = "labelValue3";
-            this.labelValue3.Size = new System.Drawing.Size(56, 16);
+            this.labelValue3.Size = new System.Drawing.Size(35, 16);
             this.labelValue3.TabIndex = 8;
             this.labelValue3.Text = "0.00";
             // 
@@ -127,7 +127,7 @@
             this.labelValue4.Font = new System.Drawing.Font("新細明體", 12F);
             this.labelValue4.Location = new System.Drawing.Point(220, 167);
             this.labelValue4.Name = "labelValue4";
-            this.labelValue4.Size = new System.Drawing.Size(56, 16);
+            this.labelValue4.Size = new System.Drawing.Size(35, 16);
             this.labelValue4.TabIndex = 9;
             this.labelValue4.Text = "0.00";
             // 
@@ -137,7 +137,7 @@
             this.labelValue5.Font = new System.Drawing.Font("新細明體", 12F);
             this.labelValue5.Location = new System.Drawing.Point(220, 209);
             this.labelValue5.Name = "labelValue5";
-            this.labelValue5.Size = new System.Drawing.Size(56, 16);
+            this.labelValue5.Size = new System.Drawing.Size(35, 16);
             this.labelValue5.TabIndex = 10;
             this.labelValue5.Text = "0.00";
             // 
@@ -147,7 +147,7 @@
             this.labelValue6.Font = new System.Drawing.Font("新細明體", 12F);
             this.labelValue6.Location = new System.Drawing.Point(220, 250);
             this.labelValue6.Name = "labelValue6";
-            this.labelValue6.Size = new System.Drawing.Size(56, 16);
+            this.labelValue6.Size = new System.Drawing.Size(35, 16);
             this.labelValue6.TabIndex = 11;
             this.labelValue6.Text = "0.00";
             // 
@@ -169,7 +169,7 @@
             this.Controls.Add(this.labelValue5);
             this.Controls.Add(this.labelValue6);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "結果";
             this.ResumeLayout(false);
             this.PerformLayout();
 

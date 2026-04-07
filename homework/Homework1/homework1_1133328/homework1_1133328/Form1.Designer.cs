@@ -47,8 +47,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.計算器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.計算器ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label7 = new System.Windows.Forms.Label();
+            this.說明ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -234,7 +234,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.計算器ToolStripMenuItem,
-            this.計算器ToolStripMenuItem1});
+            this.說明ToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(396, 24);
@@ -247,12 +247,6 @@
             this.計算器ToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.計算器ToolStripMenuItem.Text = "計算器";
             // 
-            // 計算器ToolStripMenuItem1
-            // 
-            this.計算器ToolStripMenuItem1.Name = "計算器ToolStripMenuItem1";
-            this.計算器ToolStripMenuItem1.Size = new System.Drawing.Size(43, 20);
-            this.計算器ToolStripMenuItem1.Text = "說明";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -263,6 +257,13 @@
             this.label7.TabIndex = 16;
             this.label7.Text = "資料來源：財政部官網";
             // 
+            // 說明ToolStripMenuItem1
+            // 
+            this.說明ToolStripMenuItem1.Name = "說明ToolStripMenuItem1";
+            this.說明ToolStripMenuItem1.Size = new System.Drawing.Size(43, 20);
+            this.說明ToolStripMenuItem1.Text = "說明";
+            this.說明ToolStripMenuItem1.Click += new System.EventHandler(this.計算器ToolStripMenuItem1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -272,7 +273,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "房貸計算機";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -294,7 +295,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem 計算器ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 計算器ToolStripMenuItem1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox5;
@@ -305,6 +305,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripMenuItem 說明ToolStripMenuItem1;
     }
 }
 
