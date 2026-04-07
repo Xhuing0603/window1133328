@@ -47,8 +47,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.計算器ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label7 = new System.Windows.Forms.Label();
             this.說明ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -179,11 +179,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(34, 75);
+            this.label2.Location = new System.Drawing.Point(66, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 16);
+            this.label2.Size = new System.Drawing.Size(55, 16);
             this.label2.TabIndex = 5;
-            this.label2.Text = "自備款比例";
+            this.label2.Text = "自備款";
             // 
             // label1
             // 
@@ -247,6 +247,13 @@
             this.計算器ToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.計算器ToolStripMenuItem.Text = "計算器";
             // 
+            // 說明ToolStripMenuItem1
+            // 
+            this.說明ToolStripMenuItem1.Name = "說明ToolStripMenuItem1";
+            this.說明ToolStripMenuItem1.Size = new System.Drawing.Size(43, 20);
+            this.說明ToolStripMenuItem1.Text = "說明";
+            this.說明ToolStripMenuItem1.Click += new System.EventHandler(this.計算器ToolStripMenuItem1_Click);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -256,13 +263,6 @@
             this.label7.Size = new System.Drawing.Size(167, 16);
             this.label7.TabIndex = 16;
             this.label7.Text = "資料來源：財政部官網";
-            // 
-            // 說明ToolStripMenuItem1
-            // 
-            this.說明ToolStripMenuItem1.Name = "說明ToolStripMenuItem1";
-            this.說明ToolStripMenuItem1.Size = new System.Drawing.Size(43, 20);
-            this.說明ToolStripMenuItem1.Text = "說明";
-            this.說明ToolStripMenuItem1.Click += new System.EventHandler(this.計算器ToolStripMenuItem1_Click);
             // 
             // Form1
             // 
