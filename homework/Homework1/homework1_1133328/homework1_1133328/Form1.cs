@@ -27,7 +27,7 @@ namespace homework1_1133328
             messageLabel.Size = new System.Drawing.Size(396, 306);
             messageLabel.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             messageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            messageLabel.Text = "本App是2026年製作，可能隨著政策變動，需要及時訊息請上財政部官網查看";
+            messageLabel.Text = "本App是2026年製作，可能隨著政策變動，需要及時訊息請上內政部官網查看";
             messageLabel.Visible = false;
             this.Controls.Add(messageLabel);
 
