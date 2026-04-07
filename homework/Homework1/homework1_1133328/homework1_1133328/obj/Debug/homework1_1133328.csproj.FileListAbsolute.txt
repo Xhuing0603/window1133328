@@ -1,0 +1,11 @@
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\bin\Debug\homework1_1133328.exe.config
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\bin\Debug\homework1_1133328.exe
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\bin\Debug\homework1_1133328.pdb
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\obj\Debug\homework1_1133328.csproj.AssemblyReference.cache
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\obj\Debug\homework1_1133328.Form1.resources
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\obj\Debug\homework1_1133328.Properties.Resources.resources
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\obj\Debug\homework1_1133328.csproj.GenerateResource.cache
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\obj\Debug\homework1_1133328.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\obj\Debug\homework1_1133328.exe
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\obj\Debug\homework1_1133328.pdb
+C:\Users\Administrator\Desktop\program workplace\yzu\window2\window1133328\homework\Homework1\homework1_1133328\homework1_1133328\obj\Debug\homework1_1133328.Form2.resources
