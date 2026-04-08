@@ -38,6 +38,13 @@ namespace homework1_1133328
         {
             try
             {
+                // If any input is empty, use the requested default values
+                if (string.IsNullOrWhiteSpace(textBox1.Text)) textBox1.Text = "10000000";
+                if (string.IsNullOrWhiteSpace(textBox2.Text)) textBox2.Text = "0";
+                if (string.IsNullOrWhiteSpace(textBox3.Text)) textBox3.Text = "1.5";
+                if (string.IsNullOrWhiteSpace(textBox4.Text)) textBox4.Text = "20";
+                if (string.IsNullOrWhiteSpace(textBox5.Text)) textBox5.Text = "0";
+
                 double totalHousePrice = double.Parse(textBox1.Text);
                 double downPayment = double.Parse(textBox2.Text);
 
