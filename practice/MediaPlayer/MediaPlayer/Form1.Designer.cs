@@ -45,7 +45,7 @@
             this.wmpVideo.Location = new System.Drawing.Point(-3, -1);
             this.wmpVideo.Name = "wmpVideo";
             this.wmpVideo.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("wmpVideo.OcxState")));
-            this.wmpVideo.Size = new System.Drawing.Size(670, 350);
+            this.wmpVideo.Size = new System.Drawing.Size(670, 388);
             this.wmpVideo.TabIndex = 0;
             // 
             // btnStop
@@ -109,16 +109,16 @@
             this.palButton.Controls.Add(this.btnStop);
             this.palButton.Controls.Add(this.btnPause);
             this.palButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.palButton.Location = new System.Drawing.Point(0, 349);
+            this.palButton.Location = new System.Drawing.Point(0, 340);
             this.palButton.Name = "palButton";
-            this.palButton.Size = new System.Drawing.Size(670, 61);
+            this.palButton.Size = new System.Drawing.Size(670, 58);
             this.palButton.TabIndex = 6;
             // 
             // frmMediaPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 410);
+            this.ClientSize = new System.Drawing.Size(670, 398);
             this.Controls.Add(this.palButton);
             this.Controls.Add(this.wmpVideo);
             this.Name = "frmMediaPlayer";
