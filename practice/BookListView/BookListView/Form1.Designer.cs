@@ -39,6 +39,8 @@
             this.imgL = new System.Windows.Forms.ImageList(this.components);
             this.imgS = new System.Windows.Forms.ImageList(this.components);
             this.pnlBooks = new System.Windows.Forms.Panel();
+            this.lblMarquee = new System.Windows.Forms.Label();
+            this.timerMarquee = new System.Windows.Forms.Timer(this.components);
             this.pnlTools.SuspendLayout();
             this.grpBorrow.SuspendLayout();
             this.grpView.SuspendLayout();
@@ -51,9 +53,9 @@
             this.pnlTools.Controls.Add(this.grpBorrow);
             this.pnlTools.Controls.Add(this.grpView);
             this.pnlTools.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlTools.Location = new System.Drawing.Point(536, 0);
+            this.pnlTools.Location = new System.Drawing.Point(536, 30);
             this.pnlTools.Name = "pnlTools";
-            this.pnlTools.Size = new System.Drawing.Size(264, 450);
+            this.pnlTools.Size = new System.Drawing.Size(264, 420);
             this.pnlTools.TabIndex = 0;
             // 
             // grpBorrow
@@ -63,7 +65,7 @@
             this.grpBorrow.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.grpBorrow.Location = new System.Drawing.Point(0, 61);
             this.grpBorrow.Name = "grpBorrow";
-            this.grpBorrow.Size = new System.Drawing.Size(264, 389);
+            this.grpBorrow.Size = new System.Drawing.Size(264, 359);
             this.grpBorrow.TabIndex = 1;
             this.grpBorrow.TabStop = false;
             this.grpBorrow.Text = "借書清單：";
@@ -75,7 +77,7 @@
             this.lstBorrow.ItemHeight = 16;
             this.lstBorrow.Location = new System.Drawing.Point(3, 23);
             this.lstBorrow.Name = "lstBorrow";
-            this.lstBorrow.Size = new System.Drawing.Size(258, 363);
+            this.lstBorrow.Size = new System.Drawing.Size(258, 333);
             this.lstBorrow.TabIndex = 0;
             // 
             // grpView
@@ -111,7 +113,7 @@
             this.lvwBooks.LargeImageList = this.imgL;
             this.lvwBooks.Location = new System.Drawing.Point(0, 0);
             this.lvwBooks.Name = "lvwBooks";
-            this.lvwBooks.Size = new System.Drawing.Size(535, 450);
+            this.lvwBooks.Size = new System.Drawing.Size(536, 420);
             this.lvwBooks.SmallImageList = this.imgS;
             this.lvwBooks.TabIndex = 1;
             this.lvwBooks.UseCompatibleStateImageBehavior = false;
@@ -121,36 +123,60 @@
             // 
             this.imgL.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgL.ImageStream")));
             this.imgL.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgL.Images.SetKeyName(0, "Book5.bmp");
-            this.imgL.Images.SetKeyName(1, "Book6.bmp");
-            this.imgL.Images.SetKeyName(2, "Book7.bmp");
-            this.imgL.Images.SetKeyName(3, "Book8.bmp");
-            this.imgL.Images.SetKeyName(4, "Book3.bmp");
-            this.imgL.Images.SetKeyName(5, "Book4.bmp");
-            this.imgL.Images.SetKeyName(6, "Book1.bmp");
-            this.imgL.Images.SetKeyName(7, "Book2.bmp");
+            this.imgL.Images.SetKeyName(0, "Book1.bmp");
+            this.imgL.Images.SetKeyName(1, "Book2.bmp");
+            this.imgL.Images.SetKeyName(2, "Book3.bmp");
+            this.imgL.Images.SetKeyName(3, "Book4.bmp");
+            this.imgL.Images.SetKeyName(4, "Book5.bmp");
+            this.imgL.Images.SetKeyName(5, "Book6.bmp");
+            this.imgL.Images.SetKeyName(6, "Book7.bmp");
+            this.imgL.Images.SetKeyName(7, "Book8.bmp");
+            this.imgL.Images.SetKeyName(8, "Book9.png");
+            this.imgL.Images.SetKeyName(9, "Book10.png");
             // 
             // imgS
             // 
             this.imgS.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgS.ImageStream")));
             this.imgS.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgS.Images.SetKeyName(0, "Book5.bmp");
-            this.imgS.Images.SetKeyName(1, "Book6.bmp");
-            this.imgS.Images.SetKeyName(2, "Book7.bmp");
-            this.imgS.Images.SetKeyName(3, "Book8.bmp");
-            this.imgS.Images.SetKeyName(4, "Book3.bmp");
-            this.imgS.Images.SetKeyName(5, "Book4.bmp");
-            this.imgS.Images.SetKeyName(6, "Book1.bmp");
-            this.imgS.Images.SetKeyName(7, "Book2.bmp");
+            this.imgS.Images.SetKeyName(0, "Book1.bmp");
+            this.imgS.Images.SetKeyName(1, "Book2.bmp");
+            this.imgS.Images.SetKeyName(2, "Book3.bmp");
+            this.imgS.Images.SetKeyName(3, "Book4.bmp");
+            this.imgS.Images.SetKeyName(4, "Book5.bmp");
+            this.imgS.Images.SetKeyName(5, "Book6.bmp");
+            this.imgS.Images.SetKeyName(6, "Book7.bmp");
+            this.imgS.Images.SetKeyName(7, "Book8.bmp");
+            this.imgS.Images.SetKeyName(8, "Book9.png");
+            this.imgS.Images.SetKeyName(9, "Book10.png");
             // 
             // pnlBooks
             // 
             this.pnlBooks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(9)))));
             this.pnlBooks.Controls.Add(this.lvwBooks);
-            this.pnlBooks.Location = new System.Drawing.Point(2, 0);
+            this.pnlBooks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBooks.Location = new System.Drawing.Point(0, 30);
             this.pnlBooks.Name = "pnlBooks";
-            this.pnlBooks.Size = new System.Drawing.Size(535, 450);
+            this.pnlBooks.Size = new System.Drawing.Size(536, 420);
             this.pnlBooks.TabIndex = 2;
+            // 
+            // lblMarquee
+            // 
+            this.lblMarquee.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblMarquee.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblMarquee.Font = new System.Drawing.Font("標楷體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblMarquee.ForeColor = System.Drawing.Color.Black;
+            this.lblMarquee.Location = new System.Drawing.Point(0, 0);
+            this.lblMarquee.Name = "lblMarquee";
+            this.lblMarquee.Size = new System.Drawing.Size(800, 30);
+            this.lblMarquee.TabIndex = 3;
+            this.lblMarquee.Text = "    元智圖書館館藏借閱系統    ";
+            this.lblMarquee.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // timerMarquee
+            // 
+            this.timerMarquee.Enabled = true;
+            this.timerMarquee.Interval = 200;
+            this.timerMarquee.Tick += new System.EventHandler(this.timerMarquee_Tick);
             // 
             // frmBooks
             // 
@@ -159,6 +185,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pnlBooks);
             this.Controls.Add(this.pnlTools);
+            this.Controls.Add(this.lblMarquee);
             this.Font = new System.Drawing.Font("標楷體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Name = "frmBooks";
             this.Text = "圖書管理程式";
@@ -182,6 +209,8 @@
         private System.Windows.Forms.ImageList imgS;
         private System.Windows.Forms.ComboBox cmbView;
         private System.Windows.Forms.Panel pnlBooks;
+        private System.Windows.Forms.Label lblMarquee;
+        private System.Windows.Forms.Timer timerMarquee;
     }
 }
 
