@@ -2,19 +2,19 @@
 
 圖書檢視視窗程式
 
-<img width="802" height="482" alt="image" src="https://github.com/user-attachments/assets/c73695bc-5761-4de5-a91d-c5594f471a92" />
+<img width="802" height="482" alt="image" src="https://github.com/user-attachments/assets/49ec4ccf-4c9b-4d3d-8e98-2be19451a9bd" />
 
 初始頁面，根據右上角可選擇不同大小書本檢視
 
-<img width="802" height="482" alt="image" src="https://github.com/user-attachments/assets/abb83745-471b-45c6-97a3-e3f4425b46b2" />
+<img width="802" height="482" alt="image" src="https://github.com/user-attachments/assets/1ef66b2c-f6e0-437b-a208-59b7fcfdada2" />
 
 詳細資料
 
-<img width="802" height="482" alt="image" src="https://github.com/user-attachments/assets/81141986-82cc-4803-a454-9a4fb639992a" />
+<img width="802" height="482" alt="image" src="https://github.com/user-attachments/assets/e774af23-48bd-4717-99bb-5ab24df9d83a" />
 
 小圖示
 
-<img width="802" height="482" alt="image" src="https://github.com/user-attachments/assets/47e21bea-b33f-434c-ba81-86d8b64616ba" />
+<img width="802" height="482" alt="image" src="https://github.com/user-attachments/assets/e19d1b15-c5f2-47d3-ae8b-1e63e983abd4" />
 
 清單
 
