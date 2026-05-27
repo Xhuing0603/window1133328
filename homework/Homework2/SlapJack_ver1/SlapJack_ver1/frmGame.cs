@@ -54,9 +54,45 @@ namespace SlapJack_ver1
             // distribute remainder to ai1
             if (remainder > 0) ai1Count += remainder;
 
-            lblMessage.Text = $"玩家錯拍，中央牌堆 {centralCount} 張平均分給電腦A和電腦B。";
+            lblMessage.Text = $"玩家錯拍，\n中央牌堆 {centralCount} 張分給電腦A和電腦B。";
             centralCount = 0;
             UpdateLabels();
+            // reset expected counting number when player mis-slaps
+            try { expectedNumber = 1; } catch { }
+            // reset audio sequence to start from the first voice
+            try { nextVoiceIndex = 0; }
+            catch { }
+            // play the first voice resource for the mis-slap WITHOUT advancing nextVoiceIndex
+            try
+            {
+                if (voiceResourceNames != null && voiceResourceNames.Count > 0)
+                {
+                    string resName = voiceResourceNames[0];
+                    var obj = Properties.Resources.ResourceManager.GetObject(resName, Properties.Resources.Culture);
+                    if (obj is System.IO.UnmanagedMemoryStream ums)
+                    {
+                        new SoundPlayer(ums).Play();
+                    }
+                    else if (obj is System.IO.Stream s)
+                    {
+                        new SoundPlayer(s).Play();
+                    }
+                    else if (obj is byte[] b)
+                    {
+                        var ms = new System.IO.MemoryStream(b);
+                        new SoundPlayer(ms).Play();
+                    }
+                    else
+                    {
+                        System.Media.SystemSounds.Beep.Play();
+                    }
+                }
+                else
+                {
+                    System.Media.SystemSounds.Beep.Play();
+                }
+            }
+            catch { try { System.Media.SystemSounds.Beep.Play(); } catch { } }
             // Pause game briefly so player can see the result
             try { timerAIFlip.Stop(); } catch { }
             try { if (btnFlip != null) btnFlip.Enabled = false; } catch { }
@@ -682,19 +718,19 @@ namespace SlapJack_ver1
             if (playerHit)
             {
                 humanCount += centralCount;
-                lblMessage.Text = $"你命中目標區域，獲得 {centralCount} 張中央棄牌堆！";
+                lblMessage.Text = $"你命中目標區域\n獲得 {centralCount} 張中央棄牌堆！";
             }
             else
             {
                 if (rnd.Next(0, 2) == 0)
                 {
                     ai1Count += centralCount;
-                    lblMessage.Text = $"電腦A 搶到中央棄牌堆，獲得 {centralCount} 張牌。";
+                    lblMessage.Text = $"電腦A 搶到中央棄牌堆\n獲得 {centralCount} 張牌。";
                 }
                 else
                 {
                     ai2Count += centralCount;
-                    lblMessage.Text = $"電腦B 搶到中央棄牌堆，獲得 {centralCount} 張牌。";
+                    lblMessage.Text = $"電腦B 搶到中央棄牌堆\n獲得 {centralCount} 張牌。";
                 }
             }
 
