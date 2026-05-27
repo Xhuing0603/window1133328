@@ -19,7 +19,6 @@ namespace SlapJack_ver1
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            // 開始遊戲，開啟遊戲視窗
             using (var game = new frmGame())
             {
                 this.Hide();

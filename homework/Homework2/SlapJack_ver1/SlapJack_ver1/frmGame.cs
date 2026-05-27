@@ -21,10 +21,8 @@ namespace SlapJack_ver1
 
         private void progressBarCalibration_MouseDown(object sender, MouseEventArgs e)
         {
-            // 玩家直接在校準條上點擊視為嘗試取得中央棄牌堆
             if (!calibrationActive) return;
 
-            // 計算點擊對應的 value（使用 client width 以避免邊框或外部容器影響）
             var pb = progressBarCalibration;
             int max = pb.Maximum;
             int clientWidth = Math.Max(1, pb.ClientRectangle.Width);
@@ -32,10 +30,8 @@ namespace SlapJack_ver1
             ratio = Math.Max(0.0, Math.Min(1.0, ratio));
             int clickedValue = (int)Math.Round(ratio * max);
 
-            // 若玩家點擊位置在目標範圍內，直接給玩家
             bool hit = (clickedValue >= calibrationTargetX && clickedValue <= calibrationTargetX + calibrationTargetWidth);
 
-            // 使用共通的結束處理，確保能正確取消訂閱等清理工作
             EndCalibration(hit, true);
         }
 
@@ -51,18 +47,16 @@ namespace SlapJack_ver1
             int remainder = centralCount - (half * 2);
             ai1Count += half;
             ai2Count += half;
-            // distribute remainder to ai1
+
             if (remainder > 0) ai1Count += remainder;
 
             lblMessage.Text = $"玩家錯拍，\n中央牌堆 {centralCount} 張分給電腦A和電腦B。";
             centralCount = 0;
             UpdateLabels();
-            // reset expected counting number when player mis-slaps
+ 
             try { expectedNumber = 1; } catch { }
-            // reset audio sequence to start from the first voice
             try { nextVoiceIndex = 0; }
             catch { }
-            // play the first voice resource for the mis-slap WITHOUT advancing nextVoiceIndex
             try
             {
                 if (voiceResourceNames != null && voiceResourceNames.Count > 0)
@@ -93,14 +87,12 @@ namespace SlapJack_ver1
                 }
             }
             catch { try { System.Media.SystemSounds.Beep.Play(); } catch { } }
-            // Pause game briefly so player can see the result
             try { timerAIFlip.Stop(); } catch { }
             try { if (btnFlip != null) btnFlip.Enabled = false; } catch { }
             try { timerClaimPause.Interval = 1500; timerClaimPause.Start(); } catch { }
         }
 
         private Random rnd = new Random();
-        // card counts will be dealt at game start
         private int humanCount = 0;
         private int ai1Count = 0;
         private int ai2Count = 0;
@@ -112,22 +104,15 @@ namespace SlapJack_ver1
         private int calibrationHoldTicks = 0;
         private System.Collections.Generic.List<Control> subscribedControls = new System.Collections.Generic.List<Control>();
 
-        // card display
         private bool cardVisible = false;
         private string lastCardResourceName = null;
         private List<string> faceResourceNames = null;
         private List<string> heartResourceNames = null;
-        // In resources grouped by 4 per rank (pic1..4 = rank1, pic5..8 = rank2, ...),
-        // set which position (0-based) within each group corresponds to hearts.
-        // Common ordering: clubs, diamonds, hearts, spades -> heartsIndex = 2
         private int heartsIndexInGroup = 2;
-        // current expected counting number (1..13) for the matching rule
         private int expectedNumber = 1;
-        // voice resources for sound playback when a card is shown
         private List<string> voiceResourceNames = null;
         private int nextVoiceIndex = 0;
 
-        // AI slap timers and reaction tracking
         private double ai1ReactionMs = 0;
         private double ai2ReactionMs = 0;
         private DateTime calibrationStartTime;
@@ -135,7 +120,6 @@ namespace SlapJack_ver1
 
         private void frmGame_Load(object sender, EventArgs e)
         {
-            // deal cards evenly among three players: human gets the extra card if remainder
             DealCards();
             UpdateLabels();
             EnsureLoadResources();
@@ -147,21 +131,17 @@ namespace SlapJack_ver1
         {
             int total = 52;
             int players = 3;
-            int baseCount = total / players; // 17
-            int remainder = total % players; // 1
+            int baseCount = total / players; 
+            int remainder = total % players; 
 
-            // distribute base count
             ai1Count = baseCount;
             ai2Count = baseCount;
             humanCount = baseCount;
 
-            // give the extra card(s) to the human player
             humanCount += remainder;
 
-            // reset central pile
             centralCount = 0;
 
-            // reset expected counting number at game start
             expectedNumber = 1;
         }
 
@@ -291,18 +271,15 @@ namespace SlapJack_ver1
 
         private void timerAIFlip_Tick(object sender, EventArgs e)
         {
-            if (calibrationActive) return; // 校準期間暫停自動翻牌
-            if (cardVisible) return; // 如果牌正在顯示，暫停下一次自動翻牌
+            if (calibrationActive) return; 
+            if (cardVisible) return; 
 
-            // 確保 flipTurn 指向一個仍有牌的玩家
             if (!AdvanceToNextWithCards())
             {
-                // 如果沒有任何玩家有牌，停止自動翻牌
                 timerAIFlip.Stop();
                 return;
             }
 
-            // Show card for the current player, determine its rank and check against expectedNumber
             int shownRank = 0;
             if (flipTurn == 0)
             {
@@ -431,7 +408,6 @@ namespace SlapJack_ver1
 
             lblMessage.Text = "請搶拍。";
 
-            // 暫停自動翻牌直到校準結束
             timerAIFlip.Stop();
         }
 
