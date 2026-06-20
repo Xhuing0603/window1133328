@@ -1,0 +1,396 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.IO;
+using Fortune_telling.Models;
+
+namespace Fortune_telling.Database
+{
+    public class DatabaseManager
+    {
+        private static readonly string DbPath = GetDatabasePath();
+
+        private static string GetDatabasePath()
+        {
+            // 獲取執行程序的目錄
+            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+
+            // 向上查找到包含 .sln 或 .csproj 的專案根目錄
+            // 開發時：bin\Debug 或 bin\Release 上層的上層
+            // 發佈後：直接使用執行目錄
+            string projectRoot = baseDir;
+
+            // 如果在 bin 目錄中，則向上找到專案根目錄
+            if (baseDir.Contains(@"\bin\Debug") || baseDir.Contains(@"\bin\Release"))
+            {
+                projectRoot = Directory.GetParent(Directory.GetParent(baseDir).FullName).FullName;
+            }
+
+            return Path.Combine(projectRoot, "Data", "fortunetelling.mdb");
+        }
+
+        private static readonly string ConnectionString = $"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={DbPath};";
+
+        public DatabaseManager()
+        {
+            InitializeDatabase();
+        }
+
+        private void InitializeDatabase()
+        {
+            try
+            {
+                // 確保目錄存在
+                string directory = Path.GetDirectoryName(DbPath);
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                // 如果資料庫不存在，建立資料庫
+                if (!File.Exists(DbPath))
+                {
+                    CreateDatabase();
+                }
+
+                // 建立表格
+                CreateTables();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    $"初始化數據庫失敗：{ex.Message}\n\n詳情：{ex.InnerException?.Message}",
+                    "數據庫初始化錯誤");
+            }
+        }
+
+        /// <summary>
+        /// 建立新的 Access 資料庫檔案
+        /// </summary>
+        private void CreateDatabase()
+        {
+            try
+            {
+                // 方法1：嘗試使用 ADOX（如果系統支持）
+                try
+                {
+                    Type catalogType = Type.GetTypeFromProgID("ADOX.Catalog");
+                    if (catalogType != null)
+                    {
+                        dynamic catalog = Activator.CreateInstance(catalogType);
+                        catalog.Create(ConnectionString);
+                        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(catalog);
+                        return;
+                    }
+                }
+                catch { }
+
+                // 方法2：直接打開連接創建（某些系統可行）
+                try
+                {
+                    using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                    {
+                        conn.Open();
+                        conn.Close();
+                    }
+                    return;
+                }
+                catch { }
+
+                // 方法3：使用 Jet 的建立命令
+                try
+                {
+                    OleDbConnection connCreate = new OleDbConnection("Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + DbPath);
+                    connCreate.Open();
+                    connCreate.Close();
+                    return;
+                }
+                catch { }
+
+                // 如果以上都失敗，提示用戶
+                System.Windows.Forms.MessageBox.Show(
+                    "無法自動建立數據庫檔案。\n\n" +
+                    "可能原因：\n" +
+                    "1. 未安裝 Microsoft Access Database Engine\n" +
+                    "2. 磁盤空間不足\n" +
+                    "3. 沒有寫入權限\n\n" +
+                    "請嘗試：\n" +
+                    "1. 手動在 Data 資料夾中建立空的 fortunetelling.mdb 檔案\n" +
+                    "2. 或安裝 Microsoft Access Database Engine\n" +
+                    "3. 檢查 Data 資料夾的讀寫權限",
+                    "數據庫建立失敗");
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"建立數據庫時出錯：{ex.Message}");
+            }
+        }
+
+        private void CreateTables()
+        {
+            // 如果數據庫檔案仍然不存在，暫時跳過建立表格
+            if (!File.Exists(DbPath))
+            {
+                return;
+            }
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    // 檢查表格是否存在
+                    DataTable tables = conn.GetSchema("Tables");
+                    bool usersTableExists = false;
+                    bool recordsTableExists = false;
+
+                    foreach (DataRow row in tables.Rows)
+                    {
+                        string tableName = row["TABLE_NAME"].ToString();
+                        if (tableName == "Users")
+                            usersTableExists = true;
+                        if (tableName == "FortuneRecords")
+                            recordsTableExists = true;
+                    }
+
+                    // 建立使用者表格
+                    if (!usersTableExists)
+                    {
+                        // Access 的 SQL 語法
+                        string userTableSql = @"
+                            CREATE TABLE Users (
+                                Id COUNTER PRIMARY KEY,
+                                Username VARCHAR(255) NOT NULL,
+                                Password VARCHAR(255) NOT NULL,
+                                CreatedAt DateTime DEFAULT Now()
+                            );";
+
+                        using (OleDbCommand cmd = new OleDbCommand(userTableSql, conn))
+                        {
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Windows.Forms.MessageBox.Show(
+                                    $"建立 Users 表格失敗：{ex.Message}");
+                            }
+                        }
+                    }
+
+                    // 建立占卜記錄表格
+                    if (!recordsTableExists)
+                    {
+                        // Access 的 SQL 語法
+                        string recordTableSql = @"
+                            CREATE TABLE FortuneRecords (
+                                Id COUNTER PRIMARY KEY,
+                                UserId Integer NOT NULL,
+                                Result MEMO,
+                                CreatedAt DateTime DEFAULT Now()
+                            );";
+
+                        using (OleDbCommand cmd = new OleDbCommand(recordTableSql, conn))
+                        {
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Windows.Forms.MessageBox.Show(
+                                    $"建立 FortuneRecords 表格失敗：{ex.Message}");
+                            }
+                        }
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"建立表格失敗: {ex.Message}");
+            }
+        }
+
+        public bool RegisterUser(string username, string password)
+        {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                return false;
+            }
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO Users (Username, Password) VALUES (@username, @password);";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", password);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    conn.Close();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"註冊失敗: {ex.Message}");
+                return false;
+            }
+        }
+
+        public bool LoginUser(string username, string password)
+        {
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT COUNT(*) FROM Users WHERE Username = @username AND Password = @password;";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", password);
+                        int result = (int)cmd.ExecuteScalar();
+
+                        conn.Close();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"登入失敗: {ex.Message}");
+                return false;
+            }
+        }
+
+        public int GetUserId(string username)
+        {
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT Id FROM Users WHERE Username = @username;";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        object result = cmd.ExecuteScalar();
+
+                        conn.Close();
+                        return result != null ? (int)result : -1;
+                    }
+                }
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        public bool UserExists(string username)
+        {
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT COUNT(*) FROM Users WHERE Username = @username;";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        int result = (int)cmd.ExecuteScalar();
+
+                        conn.Close();
+                        return result > 0;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool SaveFortuneRecord(int userId, string result)
+        {
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO FortuneRecords (UserId, Result) VALUES (@userId, @result);";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        cmd.Parameters.AddWithValue("@result", result);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    conn.Close();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"保存占卜結果失敗: {ex.Message}");
+                return false;
+            }
+        }
+
+        public List<FortuneRecord> GetUserFortuneRecords(int userId)
+        {
+            List<FortuneRecord> records = new List<FortuneRecord>();
+
+            try
+            {
+                using (OleDbConnection conn = new OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT Id, UserId, Result, CreatedAt FROM FortuneRecords WHERE UserId = @userId ORDER BY CreatedAt DESC;";
+
+                    using (OleDbCommand cmd = new OleDbCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+
+                        using (IDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                records.Add(new FortuneRecord
+                                {
+                                    Id = (int)reader["Id"],
+                                    UserId = (int)reader["UserId"],
+                                    Result = reader["Result"].ToString(),
+                                    CreatedAt = (DateTime)reader["CreatedAt"]
+                                });
+                            }
+                        }
+                    }
+
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"取得占卜記錄失敗: {ex.Message}");
+            }
+
+            return records;
+        }
+    }
+}

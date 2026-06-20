@@ -1,0 +1,59 @@
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+
+# Visual Studio code coverage results
+*.coverage
+*.coveragexml
+
+# Rider is a .NET IDE
+.idea/
+*.sln.iml
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Local history for Visual Studio
+.localhistory/
+
+# Local machine-specific files
+local.settings.json
+appsettings.local.json
+
+# Database files - Do not commit user data
+Data/
+*.mdb
+*.accdb
+
+# Package Directories
+packages/
+.paket/content/
+.paket/restore
+
+# Nuget personal use
+nuget.config
+
+# Mac OSX
+.DS_Store
+
+# Cake
+tools/

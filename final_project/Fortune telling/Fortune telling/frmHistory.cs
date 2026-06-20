@@ -1,0 +1,89 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Fortune_telling.Database;
+using Fortune_telling.Models;
+
+namespace Fortune_telling
+{
+    public partial class frmHistory : Form
+    {
+        private DatabaseManager dbManager;
+        private frmFortune parentFortune;
+
+        public frmHistory()
+        {
+            InitializeComponent();
+            dbManager = new DatabaseManager();
+            LoadHistoryRecords();
+        }
+
+        /// <summary>
+        /// 設定父表單（占卜頁面）
+        /// </summary>
+        public void SetParentForm(frmFortune parent)
+        {
+            this.parentFortune = parent;
+        }
+
+        private void LoadHistoryRecords()
+        {
+            if (frmStart.currentUserId <= 0)
+            {
+                MessageBox.Show("無法載入占卜記錄：用戶信息不完整");
+                return;
+            }
+
+            // 清空現有內容
+            richHistory.Clear();
+
+            // 獲取用戶的所有占卜記錄
+            List<FortuneRecord> records = dbManager.GetUserFortuneRecords(frmStart.currentUserId);
+
+            if (records.Count == 0)
+            {
+                richHistory.Text = "暫無占卜記錄";
+                return;
+            }
+
+            // 按時間倒序顯示（最新的在最上面）
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("═══════════════════════════════════════════");
+            sb.AppendLine("            📜 占卜歷史時間軸 📜            ");
+            sb.AppendLine("═══════════════════════════════════════════\n");
+
+            foreach (var record in records)
+            {
+                sb.AppendLine($"⏰ 占卜時間：{record.CreatedAt:yyyy年MM月dd日 HH:mm:ss}");
+                sb.AppendLine("─────────────────────────────────────────");
+                sb.AppendLine(record.Result);
+                sb.AppendLine();
+                sb.AppendLine("═══════════════════════════════════════════\n");
+            }
+
+            richHistory.Text = sb.ToString();
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            // 重置父表單（frmFortune）的界面
+            if (parentFortune != null)
+            {
+                parentFortune.ResetUIForNewDivination();
+            }
+
+            this.Close();
+        }
+
+        private void frmHistory_Load(object sender, EventArgs e)
+        {
+            LoadHistoryRecords();
+        }
+    }
+}
