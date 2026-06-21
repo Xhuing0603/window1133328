@@ -3,16 +3,12 @@ using System.IO;
 
 namespace Fortune_telling.Utilities
 {
-    /// <summary>
-    /// 應用初始化工具 - 負責在應用啟動時準備必要的資源
-    /// </summary>
     public static class ApplicationInitializer
     {
         public static void Initialize()
         {
             try
             {
-                // 初始化數據庫
                 InitializeDatabase();
             }
             catch (Exception ex)
@@ -31,17 +27,14 @@ namespace Fortune_telling.Utilities
         {
             try
             {
-                // 確保 Data 資料夾存在
                 string dataDir = Path.Combine(GetApplicationDataPath(), "Data");
                 if (!Directory.Exists(dataDir))
                 {
                     Directory.CreateDirectory(dataDir);
                 }
 
-                // 數據庫管理器會自動初始化和建立表格
                 var dbManager = new Fortune_telling.Database.DatabaseManager();
 
-                // 驗證數據庫
                 string dbPath = GetDatabasePath();
                 if (!File.Exists(dbPath))
                 {

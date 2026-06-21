@@ -23,10 +23,6 @@ namespace Fortune_telling
             dbManager = new DatabaseManager();
             LoadHistoryRecords();
         }
-
-        /// <summary>
-        /// 設定父表單（占卜頁面）
-        /// </summary>
         public void SetParentForm(frmFortune parent)
         {
             this.parentFortune = parent;
@@ -40,10 +36,8 @@ namespace Fortune_telling
                 return;
             }
 
-            // 清空現有內容
             richHistory.Clear();
 
-            // 獲取用戶的所有占卜記錄
             List<FortuneRecord> records = dbManager.GetUserFortuneRecords(frmStart.currentUserId);
 
             if (records.Count == 0)
@@ -52,7 +46,6 @@ namespace Fortune_telling
                 return;
             }
 
-            // 按時間倒序顯示（最新的在最上面）
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("═══════════════════════════════════════════");
             sb.AppendLine("            📜 占卜歷史時間軸 📜            ");

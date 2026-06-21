@@ -49,19 +49,16 @@ namespace Fortune_telling
         {
             if (login == true)
             {
-                // 已登入 - 打開歷史紀錄頁面
                 this.Hide();
                 var frmHistory = new frmHistory();
                 frmHistory.StartPosition = FormStartPosition.CenterScreen;
                 frmHistory.ShowDialog();
                 this.Show();
 
-                // 返回時更新菜單項狀態
                 UpdateLoginMenuState();
             }
             else
             {
-                // 未登入 - 提示用戶先登入
                 MessageBox.Show("請先登入才能查看占卜記錄", "提示");
             }
         }

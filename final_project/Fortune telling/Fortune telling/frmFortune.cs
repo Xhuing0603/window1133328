@@ -29,7 +29,6 @@ namespace Fortune_telling
             currentYaos = new List<YaoType>();
             LoadFortuneRecords();
 
-            // 添加菜單項事件
             homeToolStripMenuItem.Click += HomeToolStripMenuItem_Click;
             登入ToolStripMenuItem.Click += LogoutToolStripMenuItem_Click;
             本月飲食ToolStripMenuItem.Click += PastRecordsToolStripMenuItem_Click;
@@ -43,7 +42,6 @@ namespace Fortune_telling
 
         private void LogoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // 登出
             frmStart.login = false;
             frmStart.currentUsername = "";
             frmStart.currentUserId = -1;
@@ -54,8 +52,6 @@ namespace Fortune_telling
 
         private void PastRecordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // 顯示過去紀錄（目前已在此頁面）
-            //MessageBox.Show("這是過去紀錄頁面，您可以查看下方的占卜結果列表");
             this.Hide();
             var frmHistory = new frmHistory();
             frmHistory.StartPosition = FormStartPosition.CenterScreen;
@@ -80,9 +76,6 @@ namespace Fortune_telling
 
         }
 
-        /// <summary>
-        /// 生成單個爻（點擊按鈕時調用）
-        /// </summary>
         public void GenerateYao()
         {
             if (currentYaos.Count >= 6)
@@ -91,23 +84,17 @@ namespace Fortune_telling
                 return;
             }
 
-            // 生成爻
             YaoType yaoType = yijingService.GenerateYao();
             currentYaos.Add(yaoType);
 
-            // 更新 UI 顯示當前爻
             DisplayCurrentYao(yaoType);
 
-            // 檢查是否完成6個爻
             if (currentYaos.Count == 6)
             {
                 CompletesDivination();
             }
         } 
 
-        /// <summary>
-        /// 顯示當前生成的爻
-        /// </summary>
         private void DisplayCurrentYao(YaoType yaoType)
         {
             string yaoDisplay;
@@ -130,55 +117,42 @@ namespace Fortune_telling
                     break;
             }
 
-            // 隱藏最終結果標籤
             lblFinal.Visible = false;
 
-            // 更新 lblResult 顯示當前應抽取的爻數
             lblResult.TextAlign = ContentAlignment.MiddleCenter;
             lblResult.Text = $"抽取第{currentYaos.Count}爻";
-            // 更新 lblMessage 顯示當前爻信息
+        
             lblMessage.TextAlign = ContentAlignment.MiddleCenter;
             lblMessage.Text = $"{yaoDisplay}";
 
         }
 
-        /// <summary>
-        /// 完成占卜（生成6個爻後）
-        /// </summary>
+  
         private void CompletesDivination()
         {
             try
             {
-                // 生成第一卦和變卦
                 (primaryGua, changedGua) = yijingService.GenerateFullDivination(currentYaos);
 
-                // 計算老陽老陰數量
                 int oldYangYinCount = currentYaos.Count(y => y == YaoType.LaoYang || y == YaoType.LaoYin);
 
-                // 決定顯示哪個卦
                 GuaXiang displayGua = oldYangYinCount <= 3 ? primaryGua : changedGua;
 
-                // 顯示結果
                 ShowDivinationResult(displayGua, oldYangYinCount);
 
-                // 保存結果到數據庫並添加到列表
                 SaveDivinationResult(displayGua, oldYangYinCount);
 
-                // 重置以便下次占卜
                 ResetDivination();
 
-                // 更新 UI 提示用戶點擊繼續
                 lblResult.Visible = false;
                 lblMessage.TextAlign = ContentAlignment.BottomCenter;
-                //lblMessage.Text = "點擊繼續";
+
                 lblMessage.Visible = false;
-                // 使用 DialogResult 判斷用戶選擇
                 DialogResult result = MessageBox.Show("占卜完成！是否進行下一次占卜？", "占卜結果", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
                     lblMessage.Visible = true;
-                    // 選擇「是」 - 進行下一次占卜
                     lblResult.Visible = true;
                     lblResult.Text = "抽取第一爻";
                     lblMessage.Text = "點擊空白處開始抽取......";
@@ -186,10 +160,9 @@ namespace Fortune_telling
                 }
                 else
                 {
-                    // 選擇「否」 - 跳轉到過去紀錄表單
                     this.Hide();
                     var frmHistory = new frmHistory();
-                    frmHistory.SetParentForm(this);  // 傳入父表單引用
+                    frmHistory.SetParentForm(this); 
                     frmHistory.StartPosition = FormStartPosition.CenterScreen;
                     frmHistory.ShowDialog();
                     this.Show();
@@ -201,9 +174,6 @@ namespace Fortune_telling
             }
         }
 
-        /// <summary>
-        /// 顯示占卜結果
-        /// </summary>
         private void ShowDivinationResult(GuaXiang gua, int oldYangYinCount)
         {
             string result = $"【{gua.GuaName} 卦】\n" +
@@ -223,14 +193,10 @@ namespace Fortune_telling
             else
                 result += "顯示變卦（老陽老陰數 >= 4）";
 
-            // 在 lblFinal 上顯示結果
             lblFinal.Text = result;
             lblFinal.Visible = true;
         }
 
-        /// <summary>
-        /// 保存占卜結果到數據庫
-        /// </summary>
         private void SaveDivinationResult(GuaXiang gua, int oldYangYinCount)
         {
             if (frmStart.currentUserId <= 0)
@@ -239,7 +205,6 @@ namespace Fortune_telling
                 return;
             }
 
-            // 組裝詳細的結果字符串
             string detailedResult = $"卦名：{gua.GuaName}\n" +
                                   $"卦序：{gua.GuaNumber}\n" +
                                   $"含義：{gua.Meaning}\n" +
@@ -253,19 +218,14 @@ namespace Fortune_telling
 
             if (dbManager.SaveFortuneRecord(frmStart.currentUserId, detailedResult))
             {
-                // 添加結果到 RichTextBox，包含時間戳和格式化
                 string listItem = $"【{DateTime.Now:yyyy-MM-dd HH:mm:ss}】\n{gua.GuaName}卦\n━━━━━━━━━━\n";
 
-                // 在文本框開頭添加
                 richResult.Text = listItem + "\n" + richResult.Text;
 
                 LoadFortuneRecords();
             }
         }
 
-        /// <summary>
-        /// 重置占卜狀態
-        /// </summary>
         private void ResetDivination()
         {
             currentYaos.Clear();
@@ -298,9 +258,6 @@ namespace Fortune_telling
             GenerateYao();
         }
 
-        /// <summary>
-        /// 重置占卜頁面的界面
-        /// </summary>
         public void ResetUIForNewDivination()
         {
             lblResult.Visible = true;

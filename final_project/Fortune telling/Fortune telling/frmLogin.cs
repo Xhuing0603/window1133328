@@ -33,7 +33,6 @@ namespace Fortune_telling
                 return;
             }
 
-            // 使用數據庫驗證
             if (dbManager.LoginUser(username, password))
             {
                 frmStart.login = true;
@@ -42,7 +41,6 @@ namespace Fortune_telling
 
                 MessageBox.Show("登入成功！");
 
-                // 登入成功後，跳轉到占卜頁面
                 this.Hide();
                 var frmFortune = new frmFortune();
                 frmFortune.StartPosition = FormStartPosition.CenterScreen;
