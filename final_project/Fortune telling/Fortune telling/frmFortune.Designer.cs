@@ -37,6 +37,7 @@
             this.lblMessage = new System.Windows.Forms.Label();
             this.richResult = new System.Windows.Forms.RichTextBox();
             this.lblFinal = new System.Windows.Forms.Label();
+            this.lblFirst = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,11 +85,12 @@
             this.lblResult.AutoSize = true;
             this.lblResult.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblResult.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(176)))), ((int)(((byte)(147)))));
-            this.lblResult.Location = new System.Drawing.Point(260, 150);
+            this.lblResult.Location = new System.Drawing.Point(250, 175);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(267, 61);
             this.lblResult.TabIndex = 6;
             this.lblResult.Text = "抽取第一爻";
+            this.lblResult.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblMessage
             // 
@@ -122,12 +124,25 @@
             this.lblFinal.TabIndex = 9;
             this.lblFinal.Visible = false;
             // 
+            // lblFirst
+            // 
+            this.lblFirst.AutoSize = true;
+            this.lblFirst.Font = new System.Drawing.Font("微軟正黑體", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblFirst.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(176)))), ((int)(((byte)(147)))));
+            this.lblFirst.Location = new System.Drawing.Point(202, 114);
+            this.lblFirst.Name = "lblFirst";
+            this.lblFirst.Size = new System.Drawing.Size(363, 61);
+            this.lblFirst.TabIndex = 10;
+            this.lblFirst.Text = "內心默念問題後";
+            this.lblFirst.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // frmFortune
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblFirst);
             this.Controls.Add(this.richResult);
             this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.lblFinal);
@@ -155,5 +170,6 @@
         private System.Windows.Forms.Label lblMessage;
         private System.Windows.Forms.RichTextBox richResult;
         private System.Windows.Forms.Label lblFinal;
+        private System.Windows.Forms.Label lblFirst;
     }
 }

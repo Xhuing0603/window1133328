@@ -118,7 +118,7 @@ namespace Fortune_telling
             }
 
             lblFinal.Visible = false;
-
+            lblFirst.Visible = false;
             lblResult.TextAlign = ContentAlignment.MiddleCenter;
             lblResult.Text = $"抽取第{currentYaos.Count}爻";
         
@@ -152,6 +152,7 @@ namespace Fortune_telling
 
                 if (result == DialogResult.Yes)
                 {
+                    lblFirst.Visible = true;
                     lblMessage.Visible = true;
                     lblResult.Visible = true;
                     lblResult.Text = "抽取第一爻";
@@ -260,6 +261,7 @@ namespace Fortune_telling
 
         public void ResetUIForNewDivination()
         {
+            lblFirst.Visible = true;
             lblResult.Visible = true;
             lblResult.Text = "抽取第一爻";
             lblResult.TextAlign = ContentAlignment.MiddleCenter;
